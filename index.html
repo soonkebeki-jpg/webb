@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>...</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-45deg, #0f0f0f, #1a1a2e, #16213e, #0f3460);
+    background-size: 400% 400%;
+    animation: bg 10s ease infinite;
+    color: white;
+    overflow: hidden;
+}
+
+@keyframes bg {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* glass box */
+.screen {
+    display: none;
+    width: 90%;
+    max-width: 500px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    text-align: center;
+    animation: fade 1s ease;
+}
+
+.active {
+    display: block;
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+/* input */
+input {
+    width: 80%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* button */
+button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* letter */
+.letter {
+    text-align: left;
+    white-space: pre-line;
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* floating effect */
+.float {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0px);}
+    50% {transform: translateY(-8px);}
+    100% {transform: translateY(0px);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- CODE SCREEN -->
+<div id="codeScreen" class="screen active float">
+    <h2>Enter the code</h2>
+    <input id="codeInput" type="password" placeholder="Code">
+    <br>
+    <button onclick="checkCode()">Continue</button>
+    <p id="error" style="color:#ff6b6b;"></p>
+</div>
+
+<!-- OPEN SCREEN -->
+<div id="openScreen" class="screen">
+    <h2>This page is for you.</h2>
+    <p style="opacity:0.8;">Before you open it… just take a breath😅</p>
+    <button onclick="openLetter()">Open</button>
+</div>
+
+<!-- LETTER SCREEN -->
+<div id="letterScreen" class="screen">
+    <div class="letter">
+
+Hey👋
+
+I don’t really know how to write long fancy letters so I’ll just say this simply
+
+You mean a lot to me…more than just a normal friend. You’ve been like a sis to me
+
+Thank you for everything for all the talks, the laughs, and even the random small moments we shared
+
+Even if things were messy sometimes, you still matter a lot to me.
+
+And don’t forget that you’ll always have a place in my life.
+
+Thank you for being part of my life and making everthing lighter just by being there.
+
+Take care of yourself sis
+
+—Nolie
+
+    </div>
+</div>
+
+<script>
+function checkCode() {
+    let code = document.getElementById("codeInput").value;
+    let error = document.getElementById("error");
+
+    if (code === "NOLIE") {
+        document.getElementById("codeScreen").classList.remove("active");
+        document.getElementById("openScreen").classList.add("active");
+    } else {
+        error.innerText = "Wrong code";
+    }
+}
+
+function openLetter() {
+    document.getElementById("openScreen").classList.remove("active");
+    document.getElementById("letterScreen").classList.add("active");
+}
+</script>
+
+</body>
+</html>
